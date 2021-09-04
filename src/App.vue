@@ -1,17 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  {{ title }}
+
+  <ul>
+    <li v-for="entry in entries" :key="entry.id">
+    {{ entry.description }}
+    </li>
+  </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      title: "Welcome to Opportunity",
+      entries: [
+        {
+          id: 1,
+          description: "Basisbeschäftigung Besuch",
+          daytime: "14.00 Uhr"
+        },
+        {
+          id: 2,
+          description: "Sozialamt Dietikon",
+          daytime: "15.30 Uhr"
+        }
+      ]
+    }
   }
 }
 </script>
