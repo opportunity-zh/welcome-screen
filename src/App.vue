@@ -20,7 +20,7 @@
     <!-- footer -->
     <footer class="footer">
       <img
-        src="./assets/logo_stzh_sd_rgb_blau_digital.svg"
+        src="./assets/STZH_SEB_Logo.png"
         alt="Stadt Zürich Soziale Betriebe Logo"
       >
       <img
