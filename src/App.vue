@@ -96,13 +96,13 @@ body {
 }
 
 .site-title {
-  font-size: 82px;
+  font-size: 62px;
   font-weight: 900;
   margin: 80px 0 20px 0;
 }
 
 .site-description {
-  font-size: 82px;
+  font-size: 62px;
   color: #9aa7b1;
   font-weight: 500;
   margin: 0;
@@ -113,11 +113,11 @@ body {
 }
 
 .entry-item {
-  padding: 40px;
-  margin: 50px 0;
+  padding: 35px 40px;
+  margin: 40px 0;
   background: #0f05a0;
-  font-size: 38px;
-  line-height: 1.4;
+  font-size: 28px;
+  line-height: 1.3;
   list-style: none;
 }
 
@@ -145,11 +145,11 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 60px;
+  padding: 40px;
   background: #fff;
 }
 
 .footer img {
-  height: 60px;
+  height: 50px;
 }
 </style>
