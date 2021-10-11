@@ -63,7 +63,7 @@ export default {
     },
     updateCurrentDate() {
       let today = new Date();
-      const currentDate = `${today.getDate()}.${today.getMonth()}.${today.getFullYear()}`;
+      const currentDate = `${today.getDate()}.${today.getMonth() + 1}.${today.getFullYear()}`;
       this.currentDate = currentDate;
     },
     refreshData() {
