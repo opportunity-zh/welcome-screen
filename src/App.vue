@@ -43,8 +43,8 @@ export default {
   data() {
     return {
       title: "Welcome to Opportunity",
-      gsheet_url:
-        "https://sheets.googleapis.com/v4/spreadsheets/1CR1UKN0LAPNs6lWbfA2gBI2FazmWdVSFIzIwi5TG5Z4/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=AIzaSyA-qeDXOhEeQDA0vQf7LgkF7DQtGnAtmAU",
+      sheet_id: "1CR1UKN0LAPNs6lWbfA2gBI2FazmWdVSFIzIwi5TG5Z4",
+      api_token: "AIzaSyA-qeDXOhEeQDA0vQf7LgkF7DQtGnAtmAU",
       entries: [],
       currentDate: "",
     };
@@ -53,6 +53,9 @@ export default {
     // computed properties are like data properties, but with a method combined and it gets executed automatically, instead of calling a function explicitly
     filteredEntries() {
       return [...this.entries].slice(1); // remove the first item from the array
+    },
+    gsheet_url() {
+      return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
     },
   },
   methods: {
@@ -63,7 +66,9 @@ export default {
     },
     updateCurrentDate() {
       let today = new Date();
-      const currentDate = `${today.getDate()}.${today.getMonth() + 1}.${today.getFullYear()}`;
+      const currentDate = `${today.getDate()}.${
+        today.getMonth() + 1
+      }.${today.getFullYear()}`;
       this.currentDate = currentDate;
     },
     refreshData() {
