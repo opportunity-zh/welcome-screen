@@ -4,18 +4,24 @@
     <span class="site-description">{{ currentDate }}</span>
 
     <!-- entry list -->
-    <ul class="entry-list">
+    <!-- v-if will only be shown if there are entries available -->
+    <ul
+      v-if="entries"
+      class="entry-list"
+    >
       <li
-        v-for="entry in filteredEntries"
-        :key="entry.id"
         class="entry-item"
+        v-for="entry in entries"
+        :key="entry.id"
       >
-        <span class="entry-daytime">
-          {{ entry[0] }} Uhr, {{ entry[1].replaceAll("/", ".") }} </span><br />
-        <h3 class="entry-title">{{ entry[2] }}</h3>
-        <span class="entry-description">{{ entry[3] }}</span><br />
+        <span class="entry-daytime">{{entry[0]}} Uhr, {{entry[1].replaceAll("/", ".")}}</span><br />
+        <h3 class="entry-title">{{entry[2]}}</h3>
+        <span class="entry-description">{{entry[3]}}</span><br />
       </li>
     </ul>
+
+    <!-- ELSE  -->
+    <h1 v-else>Keine Events zur Zeit vorhanden!</h1>
 
     <!-- footer -->
     <footer class="footer">
@@ -51,11 +57,8 @@ export default {
   },
   computed: {
     // computed properties are like data properties, but with a method combined and it gets executed automatically, instead of calling a function explicitly
-    filteredEntries() {
-      return [...this.entries].slice(1); // remove the first item from the array
-    },
     gsheet_url() {
-      return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
+      return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A2%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
     },
   },
   methods: {
@@ -72,15 +75,13 @@ export default {
       this.currentDate = currentDate;
     },
     refreshData() {
-      this.getData();
       this.updateCurrentDate();
+      this.getData();
     },
   },
   mounted() {
-    this.refreshData(); // get first initial data and then wait for the next update
-    setInterval(() => {
-      this.refreshData();
-    }, 1800000); // wait 30mins for next update
+    this.refreshData(); // get first initial data and then wait for the next
+    setInterval(this.refreshData, 18000000); // wait 30mins for next update (1000 * 60 * 30)
   },
 };
 </script>
